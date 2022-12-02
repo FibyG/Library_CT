@@ -1,14 +1,14 @@
 package com.library.step_definitions;
 
-import com.library.utility.Driver;
+import com.library.utility.DB_Util;
 import io.cucumber.java.After;
+import io.cucumber.java.Before;
+import com.library.utility.Driver;
 import io.cucumber.java.Scenario;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 
 public class Hooks {
-
-
 
     @After
     public void teardownScenario(Scenario scenario){
@@ -18,7 +18,7 @@ public class Hooks {
         byte [] screenshot = ((TakesScreenshot) Driver.getDriver()).getScreenshotAs(OutputType.BYTES);
         scenario.attach(screenshot,"image/png",scenario.getName());
 
-        Driver.closeDriver();
+       Driver.closeDriver();
     }
 
 
@@ -50,6 +50,16 @@ public class Hooks {
     //@AfterStep
     public void afterStep(){
         System.out.println("--------> applying tearDown using @AfterStep");
+    }
+
+@Before("@db")
+    public void setupDB(){
+       DB_Util.createConnection();
+    }
+
+    @After("@db")
+    public void destroyDB(){
+        DB_Util.destroy();
     }
 
 }

@@ -1,4 +1,4 @@
-package com.cydeo.jdbctests.utility;
+package com.library.utility;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -40,9 +40,9 @@ public class DB_Util {
      */
     public static void createConnection(){
 
-        String url      = "jdbc:oracle:thin:@3.85.103.221:1521:XE"; ;
-        String username = "hr" ;
-        String password = "hr" ;
+        String url      = "jdbc:mysql://34.230.35.214:3306/library2";
+        String username = "library2_client" ;
+        String password = "6s2LQQTjBcGFfDhY" ;
 
         createConnection(url, username, password);
 
